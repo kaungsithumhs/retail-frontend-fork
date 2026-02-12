@@ -30,7 +30,7 @@ export default function App({ Component, pageProps }: AppProps) {
         inter.variable,
       )}
     >
-      <div className="container">
+      <div className="rt-container">
         <Component {...pageProps} />
       </div>
       <Toaster richColors position="top-right" />
