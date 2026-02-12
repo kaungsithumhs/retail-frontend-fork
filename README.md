@@ -1407,3 +1407,5 @@ When contributing to this project:
 ## License
 
 [License information here]
+
+...
