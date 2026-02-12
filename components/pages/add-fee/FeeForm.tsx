@@ -239,7 +239,7 @@ export function FeeForm({
         icon={<CheckCircleIcon />}
         title="လွှဲခအသစ် မှတ်ပြီးပါပြီ။"
         primaryButtonText="ပင်မစာမျက်မှာသို့သွားမည်"
-        onPrimaryClick={() => router.push("/")}
+        onPrimaryClick={() => router.push("/retail")}
       />
     </div>
   );

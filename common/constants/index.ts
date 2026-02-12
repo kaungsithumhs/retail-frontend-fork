@@ -25,7 +25,7 @@ export const API_ENDPOINTS = {
 
 // Route Paths
 export const ROUTES = {
-  HOME: "/",
+  HOME: "/retail",
   REGISTER: "/register",
   ADD_RECORD: "/transfer-records/add",
   VIEW_RECORDS: "/transfer-records/view",

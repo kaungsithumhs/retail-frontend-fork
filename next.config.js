@@ -2,7 +2,7 @@
 const NextFederationPlugin = require("@module-federation/nextjs-mf");
 
 const exposes = {
-  "./Transfer": "./pages/index.tsx",
+  "./Transfer": "./pages/retail/index.tsx",
   "./AddTransferFess": "./pages/transfer-fees/add.tsx",
   "./AddTransferRecords": "./pages/transfer-records/add.tsx",
   "./ViewTransferRecords": "./pages/transfer-records/view.tsx",
