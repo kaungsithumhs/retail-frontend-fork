@@ -120,6 +120,7 @@ export function FeeForm({
                   control={control}
                   label="ငွေသွင်း/ထုတ်ပမာဏ"
                   placeholder="ငွေသွင်း/ထုတ်ပမာဏထည့်ပါ"
+                  type="number"
                   startIcon={
                     <span className="rt-font-noto rt-text-14px rt-text-[#929292]">
                       မှ
@@ -145,6 +146,7 @@ export function FeeForm({
                     </span>
                   }
                   floatingLabel={false}
+                  type="number"
                   isCurrency
                   error={errors?.fees?.[index]?.fee?.message}
                 />
@@ -183,6 +185,7 @@ export function FeeForm({
                     </span>
                   }
                   trigger={trigger}
+                  type="number"
                   revalidateInputName={`fees.${index}.from`}
                   floatingLabel={false}
                   error={errors?.fees?.[index]?.to?.message}

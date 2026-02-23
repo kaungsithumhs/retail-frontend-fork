@@ -21,6 +21,8 @@ export interface FormInputProps<TFieldValues extends FieldValues> {
   label?: string;
   placeholder?: string;
   type?: string;
+  limit?: boolean;
+  isPhoneNumber?: boolean;
   disabled?: boolean;
   className?: string;
   startIcon?: React.ReactNode;
@@ -39,6 +41,8 @@ export function FormInput<TFieldValues extends FieldValues>({
   label,
   placeholder,
   type = "text",
+  isPhoneNumber = false,
+  limit = true,
   disabled = false,
   className,
   startIcon,
@@ -48,6 +52,7 @@ export function FormInput<TFieldValues extends FieldValues>({
   error,
   onChange,
 }: FormInputProps<TFieldValues>) {
+  const MAX_NUMBER_VALUE = 100000000;
   const [isFocused, setIsFocused] = React.useState(false);
   const [hasValue, setHasValue] = React.useState(false);
 
@@ -71,7 +76,19 @@ export function FormInput<TFieldValues extends FieldValues>({
         };
 
         const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-          let rawValue = e.target.value;
+          const isNumberType = type === "number";
+          const rawValue = isNumberType
+            ? e.target.value.replace(/[^0-9]/g, "")
+            : e.target.value;
+
+          if (
+            isNumberType &&
+            rawValue !== "" &&
+            limit &&
+            Number(rawValue) > MAX_NUMBER_VALUE
+          ) {
+            return;
+          }
 
           if (isCurrency && !isNaN(Number(removeNumberComma(rawValue)))) {
             const formatted = formatNumber(Number(removeNumberComma(rawValue)));
@@ -79,14 +96,14 @@ export function FormInput<TFieldValues extends FieldValues>({
             field.onChange(formatted);
           } else {
             setHasValue(!!rawValue);
-            field.onChange(e);
+            field.onChange(rawValue);
           }
+
           if (onChange) {
-            onChange(e.target.value);
+            onChange(rawValue);
           }
 
           if (trigger && revalidateInputName) {
-            console.log("Triggering validation for:", revalidateInputName);
             await trigger(revalidateInputName);
           }
         };
@@ -105,7 +122,9 @@ export function FormInput<TFieldValues extends FieldValues>({
                 <input
                   {...field}
                   value={field.value ?? ""}
-                  type={type}
+                  type="text"
+                  inputMode={type === "number" ? "numeric" : undefined}
+                  //   pattern={type === "number" ? "[0-9]*" : undefined}
                   disabled={disabled}
                   placeholder={placeholder}
                   className={cn(
@@ -182,7 +201,9 @@ export function FormInput<TFieldValues extends FieldValues>({
                 {...field}
                 value={field.value ?? ""}
                 id={name}
-                type={type}
+                type="text"
+                inputMode={type === "number" ? "numeric" : undefined}
+                // pattern={type === "number" ? "[0-9]*" : undefined}
                 disabled={disabled}
                 placeholder={placeholder}
                 autoComplete="one-time-code"

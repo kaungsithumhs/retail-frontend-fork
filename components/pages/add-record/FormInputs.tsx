@@ -26,8 +26,6 @@ export function FormInputs({
   currentAmount,
   setCurrentAmount,
 }: FormInputsProps) {
-  console.log(currentAmount, "currentAmount in FormInputs");
-
   return (
     <div className="rt-px-5 rt-flex rt-flex-col rt-gap-7">
       <FormInput
@@ -35,6 +33,9 @@ export function FormInputs({
         control={control}
         label="ဖုန်းနံပါတ်"
         placeholder="ဖုန်းနံပါတ်ထည့်ပါ"
+        type="number"
+        isPhoneNumber
+        limit={false}
         startIcon={
           <PhoneIcon className="rt-w-[19px] rt-h-[19px] rt-text-[#929292]" />
         }
@@ -61,7 +62,7 @@ export function FormInputs({
         control={control}
         label="ရက်စွဲ"
         placeholder="ရက်စွဲထည့်ပါ"
-        startIcon={<CalendarIcon className="rt-h-4 rt-w-4 rt-mb-1" />}
+        startIcon={<CalendarIcon className="rt-h-4 rt-w-4" />}
         floatingLabel={true}
         error={errors.date?.message}
       />
@@ -79,6 +80,7 @@ export function FormInputs({
             </span>
           }
           floatingLabel={false}
+          type="number"
           isCurrency
           error={errors.amount?.message}
           onChange={(value) => {
@@ -97,6 +99,7 @@ export function FormInputs({
             </span>
           }
           floatingLabel={false}
+          type="number"
           isCurrency
           error={errors.fee?.message}
         />

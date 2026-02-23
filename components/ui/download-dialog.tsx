@@ -66,11 +66,7 @@ export function DownloadDialog({
       <DialogPortal container={container}>
         <DialogOverlay />
 
-        <DialogPrimitive.Content
-          className="rt-absolute rt-left-0 rt-bottom-0 rt-z-50 rt-flex rt-items-center rt-justify-center rt-w-full rt-rounded-b-none"
-          onInteractOutside={(e) => e.preventDefault()}
-          onEscapeKeyDown={(e) => e.preventDefault()}
-        >
+        <DialogPrimitive.Content className="rt-absolute rt-left-0 rt-bottom-0 rt-z-50 rt-flex rt-items-center rt-justify-center rt-w-full rt-rounded-b-none">
           <form
             onSubmit={handleSubmit(() =>
               onDownload({
@@ -82,8 +78,8 @@ export function DownloadDialog({
             className="rt-w-full rt-rounded-b-none rt-rounded-t-[20px] rt-border rt-bg-white rt-p-5 rt-shadow-lg rt-flex rt-flex-col rt-items-center rt-text-center"
           >
             {/* Close button */}
-            <DialogPrimitive.Close className="rt-absolute rt-right-4 rt-top-4">
-              <X className="rt-h-4 rt-w-4" />
+            <DialogPrimitive.Close className="rt-absolute rt-right-4 rt-top-4 rt-text-[#1E77ED] rt-border-[2px] rt-border-[#1E77ED] rt-rounded-full rt-p-[2px] focus-visible:rt-outline-none focus-visible:rt-border-[#1E77ED]">
+              <X className="rt-h-4 rt-w-4 rt-font-bold" />
             </DialogPrimitive.Close>
 
             <DialogHeader className="rt-space-y-3 rt-border-b rt-w-full rt-pb-2">

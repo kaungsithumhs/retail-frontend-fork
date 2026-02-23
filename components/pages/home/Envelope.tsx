@@ -7,13 +7,38 @@ import IfElse from "@/components/IfElse";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { totalService } from "@/lib/api/total";
-import { toast } from "sonner";
+
+const SHOW_AMOUNT_STORAGE_KEY = "home-envelope-show-amount";
 
 export function Envelope() {
   const [showAmount, setShowAmount] = useState(true);
-  const [showFee, setShowFee] = useState(true);
-
   const [total, setTotal] = useState({ total: 0, fee: 0 });
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const storedShowAmount = localStorage.getItem(SHOW_AMOUNT_STORAGE_KEY);
+    if (storedShowAmount === null) {
+      return;
+    }
+
+    setShowAmount(storedShowAmount === "true");
+  }, []);
+
+  const handleToggleShowAmount = () => {
+    setShowAmount((prevShowAmount) => {
+      const nextShowAmount = !prevShowAmount;
+
+      if (typeof window !== "undefined") {
+        localStorage.setItem(SHOW_AMOUNT_STORAGE_KEY, String(nextShowAmount));
+      }
+
+      return nextShowAmount;
+    });
+  };
+
   useEffect(() => {
     totalService
       .getOne()
@@ -48,7 +73,7 @@ export function Envelope() {
             <div className="rt-flex rt-flex-col rt-basis-1/2 rt-gap-[2px]">
               <div className="rt-flex rt-items-center rt-gap-[5px]">
                 <Button
-                  onClick={() => setShowAmount(!showAmount)}
+                  onClick={handleToggleShowAmount}
                   variant="plain"
                   size="plain"
                 >
@@ -72,12 +97,12 @@ export function Envelope() {
             <div className="rt-flex rt-flex-col rt-basis-1/2 rt-gap-[2px]">
               <div className="rt-flex rt-items-center rt-gap-[5px]">
                 <Button
-                  onClick={() => setShowFee(!showFee)}
+                  onClick={handleToggleShowAmount}
                   variant="plain"
                   size="plain"
                 >
                   <IfElse
-                    isTrue={showFee}
+                    isTrue={showAmount}
                     ifBlock={<EyeOpenedIcon />}
                     elseBlock={<EyeClosedIcon />}
                   />
@@ -88,7 +113,7 @@ export function Envelope() {
               </div>
               <div className="rt-flex rt-items-center rt-font-inter">
                 <span className="rt-font-semibold rt-text-21px">
-                  {showFee ? formatNumber(total.fee) : "* * * * * *"}
+                  {showAmount ? formatNumber(total.fee) : "* * * * * *"}
                 </span>
                 <span className="rt-text-15px rt-ml-1">Ks</span>
               </div>

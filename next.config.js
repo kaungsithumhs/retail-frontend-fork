@@ -10,7 +10,7 @@ const exposes = {
   "./pages-map": "./pages-map.ts",
 };
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   webpack(config, { isServer, dev }) {
     config.module.rules.push({
       test: /\.svg$/i,

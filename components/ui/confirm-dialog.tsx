@@ -63,7 +63,7 @@ export function ConfirmDialog({
           onEscapeKeyDown={(e) => e.preventDefault()}
         >
           {showCloseButton && (
-            <DialogPrimitive.Close className="rt-absolute rt-right-4 rt-top-4 rt-rounded-sm rt-opacity-70 rt-ring-offset-[#f5f5f5] rt-transition-opacity hover:rt-opacity-100 focus:rt-outline-none focus:rt-ring-2 focus:rt-ring-[#7d7d7d] focus:rt-ring-offset-2 disabled:rt-pointer-events-none rt-z-10">
+            <DialogPrimitive.Close className="rt-absolute rt-right-4 rt-top-4 rt-rounded-sm rt-opacity-70 rt-transition-opacity hover:rt-opacity-100 focus:rt-outline-none focus:rt-ring-0 disabled:rt-pointer-events-none rt-z-10 focus-visible:rt-outline-none focus-visible:rt-border-0 focus-visible:rt-ring-0">
               <X className="rt-h-4 rt-w-4" />
               <span className="rt-sr-only">Close</span>
             </DialogPrimitive.Close>

@@ -93,6 +93,7 @@ export function RecordsList({
                       className="last:rt-rounded-b-[10px]"
                       key={index}
                       record={recordItem}
+                      isLast={index === record.records.length - 1}
                     />
                   ))}
                 </AccordionContent>

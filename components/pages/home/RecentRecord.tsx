@@ -5,54 +5,76 @@ import IfElse from "@/components/IfElse";
 import { RecordsList } from "@/components/pages/home";
 import { recordService } from "@/lib/api/records";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { RecordItem } from "@/common/types";
 
 export function RecentRecord() {
   const [records, setRecords] = useState<RecordItem[]>([]);
-  const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
-  const observerRef = useRef<HTMLDivElement | null>(null);
 
-  const fetchRecords = async () => {
-    if (loading || !hasMore) return;
+  const loadingRef = useRef(false);
+  const hasMoreRef = useRef(true);
+  const nextPageRef = useRef(1);
 
+  const fetchRecords = useCallback(async () => {
+    if (loadingRef.current || !hasMoreRef.current) {
+      return;
+    }
+
+    loadingRef.current = true;
     setLoading(true);
 
     try {
       const data = await recordService.getRecents({
-        page,
+        page: nextPageRef.current,
         limit: 10,
       });
 
       setRecords((prev) => [...prev, ...data.transferRecords]);
 
       const { totalCount, limit } = data.pagination;
-      const loaded = page * limit;
+      const loaded = nextPageRef.current * limit;
+      const more = loaded < totalCount;
 
-      if (loaded >= totalCount) {
-        setHasMore(false);
-      } else {
-        setPage((prev) => prev + 1);
+      hasMoreRef.current = more;
+      setHasMore(more);
+
+      if (more) {
+        nextPageRef.current += 1;
       }
     } finally {
+      loadingRef.current = false;
       setLoading(false);
     }
-  };
-
-  useEffect(() => {
-    fetchRecords();
   }, []);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) fetchRecords();
-    });
+    fetchRecords();
+  }, [fetchRecords]);
 
-    if (observerRef.current) observer.observe(observerRef.current);
-    return () => observer.disconnect();
+  useEffect(() => {
+    const handleScroll = () => {
+      if (loadingRef.current || !hasMoreRef.current) {
+        return;
+      }
+
+      const scrollBottom = window.innerHeight + window.scrollY;
+      const pageBottom = document.documentElement.scrollHeight;
+
+      if (scrollBottom >= pageBottom - 2) {
+        fetchRecords();
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, [fetchRecords]);
 
   return (
@@ -72,12 +94,7 @@ export function RecentRecord() {
       <div className="rt-w-full rt-flex rt-items-center rt-justify-center rt-flex-1 rt-mt-[13px]">
         <IfElse
           isTrue={records.length > 0}
-          ifBlock={
-            <>
-              <RecordsList records={records} />
-              <div ref={observerRef} />
-            </>
-          }
+          ifBlock={<RecordsList records={records} />}
           elseBlock={
             <div className="rt-flex rt-flex-col rt-gap-3 rt-items-center rt-justify-center">
               <NoRecordIcon className="rt-text-[#F7F7F7]" />
