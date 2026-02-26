@@ -11,70 +11,21 @@ import { RecordItem } from "@/common/types";
 
 export function RecentRecord() {
   const [records, setRecords] = useState<RecordItem[]>([]);
-  const [hasMore, setHasMore] = useState(true);
-  const [loading, setLoading] = useState(false);
 
-  const loadingRef = useRef(false);
-  const hasMoreRef = useRef(true);
-  const nextPageRef = useRef(1);
-
-  const fetchRecords = useCallback(async () => {
-    if (loadingRef.current || !hasMoreRef.current) {
-      return;
-    }
-
-    loadingRef.current = true;
-    setLoading(true);
-
+  const fetchRecords = async () => {
     try {
       const data = await recordService.getRecents({
-        page: nextPageRef.current,
+        page: 1,
         limit: 10,
       });
-
-      setRecords((prev) => [...prev, ...data.transferRecords]);
-
-      const { totalCount, limit } = data.pagination;
-      const loaded = nextPageRef.current * limit;
-      const more = loaded < totalCount;
-
-      hasMoreRef.current = more;
-      setHasMore(more);
-
-      if (more) {
-        nextPageRef.current += 1;
-      }
-    } finally {
-      loadingRef.current = false;
-      setLoading(false);
+      setRecords(data.transferRecords);
+    } catch (error) {
+      console.error("Failed to fetch records:", error);
     }
-  }, []);
+  };
 
   useEffect(() => {
     fetchRecords();
-  }, [fetchRecords]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (loadingRef.current || !hasMoreRef.current) {
-        return;
-      }
-
-      const scrollBottom = window.innerHeight + window.scrollY;
-      const pageBottom = document.documentElement.scrollHeight;
-
-      if (scrollBottom >= pageBottom - 2) {
-        fetchRecords();
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
   }, [fetchRecords]);
 
   return (

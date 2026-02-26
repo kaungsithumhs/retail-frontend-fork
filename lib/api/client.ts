@@ -27,8 +27,6 @@ apiClient.interceptors.request.use(
     // TODO: change token key as need
     const token = getCookie(TOKEN_KEY);
 
-    console.log(token);
-
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

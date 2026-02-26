@@ -56,7 +56,6 @@ export function Record({ record, className }: RecordProps) {
 export function ReportRecord({ record, className, isLast }: ReportRecordProps) {
   const PaymentImage = PAYMENT_IMAGES[record.Pay!];
 
-  console.log(isLast);
   return (
     <div
       key={record.Id}
