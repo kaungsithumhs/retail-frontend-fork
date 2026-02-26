@@ -63,6 +63,9 @@ export function FormInputs({
         label="ရက်စွဲ"
         placeholder="ရက်စွဲထည့်ပါ"
         startIcon={<CalendarIcon className="rt-h-4 rt-w-4" />}
+        disabledDays={{
+          after: new Date(),
+        }}
         floatingLabel={true}
         error={errors.date?.message}
       />
