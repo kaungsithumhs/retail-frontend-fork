@@ -63,7 +63,7 @@ export function ConfirmDialog({
           onEscapeKeyDown={(e) => e.preventDefault()}
         >
           {showCloseButton && (
-            <DialogPrimitive.Close className="rt-absolute rt-right-4 rt-top-4 rt-rounded-sm rt-opacity-70 rt-ring-offset-[#f5f5f5] rt-transition-opacity hover:rt-opacity-100 focus:rt-outline-none focus:rt-ring-2 focus:rt-ring-[#7d7d7d] focus:rt-ring-offset-2 disabled:rt-pointer-events-none rt-z-10">
+            <DialogPrimitive.Close className="rt-absolute rt-right-4 rt-top-4 rt-rounded-sm rt-opacity-70 rt-transition-opacity hover:rt-opacity-100 focus:rt-outline-none focus:rt-ring-0 disabled:rt-pointer-events-none rt-z-10 focus-visible:rt-outline-none focus-visible:rt-border-0 focus-visible:rt-ring-0">
               <X className="rt-h-4 rt-w-4" />
               <span className="rt-sr-only">Close</span>
             </DialogPrimitive.Close>
@@ -86,11 +86,11 @@ export function ConfirmDialog({
                 {icon}
               </div>
             )}
-            <DialogTitle className="rt-text-center rt-text-16px rt-font-semibold">
+            <DialogTitle className="rt-text-center rt-text-base rt-font-semibold">
               {title}
             </DialogTitle>
             {subtitle && (
-              <DialogDescription className="rt-text-12px rt-text-center rt-text-[#929292]">
+              <DialogDescription className="rt-text-xs rt-text-center rt-text-[#929292]">
                 {subtitle}
               </DialogDescription>
             )}
@@ -102,7 +102,7 @@ export function ConfirmDialog({
               disabled={primaryButtonDisabled}
               className="rt-w-full rt-text-white"
             >
-              <span className="rt-text-16px rt-w-full rt-font-medium">
+              <span className="rt-text-base rt-w-full rt-font-medium">
                 {primaryButtonText}
               </span>
             </Button>
@@ -117,7 +117,7 @@ export function ConfirmDialog({
                       asChild
                       variant="plain"
                       size="plain"
-                      className="rt-w-full rt-py-[11px] rt-px-[77px] rt-text-15px hover:rt-text-gray-700"
+                      className="rt-w-full rt-py-[11px] rt-px-[77px] rt-text-md hover:rt-text-gray-700"
                     >
                       <Link href={secondaryButtonHref!}>
                         {secondaryButtonText}

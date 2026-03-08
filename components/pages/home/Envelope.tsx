@@ -1,19 +1,46 @@
 import Image from "next/image";
 
 import { formatNumber } from "@/common/utils";
+import EyeCloseIcon from "@/components/icons/eye-close.svg";
 import EyeClosedIcon from "@/components/icons/eye-closed.svg";
 import EyeOpenedIcon from "@/components/icons/eye-opened.svg";
+import EyeOpenIcon from "@/components/icons/eye-open.svg";
 import IfElse from "@/components/IfElse";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { totalService } from "@/lib/api/total";
-import { toast } from "sonner";
+
+const SHOW_AMOUNT_STORAGE_KEY = "home-envelope-show-amount";
 
 export function Envelope() {
   const [showAmount, setShowAmount] = useState(true);
-  const [showFee, setShowFee] = useState(true);
-
   const [total, setTotal] = useState({ total: 0, fee: 0 });
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const storedShowAmount = localStorage.getItem(SHOW_AMOUNT_STORAGE_KEY);
+    if (storedShowAmount === null) {
+      return;
+    }
+
+    setShowAmount(storedShowAmount === "true");
+  }, []);
+
+  const handleToggleShowAmount = () => {
+    setShowAmount((prevShowAmount) => {
+      const nextShowAmount = !prevShowAmount;
+
+      if (typeof window !== "undefined") {
+        localStorage.setItem(SHOW_AMOUNT_STORAGE_KEY, String(nextShowAmount));
+      }
+
+      return nextShowAmount;
+    });
+  };
+
   useEffect(() => {
     totalService
       .getOne()
@@ -47,8 +74,11 @@ export function Envelope() {
           <div className="rt-absolute rt-bottom-12 rt-left-7 rt-w-10/12 rt-gap-8 rt-flex rt-justify-between">
             <div className="rt-flex rt-flex-col rt-basis-1/2 rt-gap-[2px]">
               <div className="rt-flex rt-items-center rt-gap-[5px]">
+                <span className="rt-font-noto rt-text-md rt-text-[#313131]">
+                  ငွေသွင်း/ထုတ်
+                </span>
                 <Button
-                  onClick={() => setShowAmount(!showAmount)}
+                  onClick={handleToggleShowAmount}
                   variant="plain"
                   size="plain"
                 >
@@ -58,39 +88,40 @@ export function Envelope() {
                     elseBlock={<EyeClosedIcon />}
                   />
                 </Button>
-                <span className="rt-font-noto rt-text-15px rt-text-[#313131]">
-                  ငွေသွင်း/ထုတ်
-                </span>
               </div>
               <div className="rt-flex rt-items-center">
-                <span className="rt-font-inter rt-font-semibold rt-text-21px">
+                <span className="rt-font-inter rt-font-semibold rt-text-xl">
                   {showAmount ? formatNumber(total.total) : "* * * * * *"}
                 </span>
-                <span className="rt-text-15px rt-ml-1"> Ks</span>
+                <span className="rt-text-md rt-ml-1"> Ks</span>
               </div>
             </div>
             <div className="rt-flex rt-flex-col rt-basis-1/2 rt-gap-[2px]">
               <div className="rt-flex rt-items-center rt-gap-[5px]">
+                <span className="rt-font-noto rt-text-md rt-text-[#313131]">
+                  လွှဲခ/အမြတ်
+                </span>
                 <Button
-                  onClick={() => setShowFee(!showFee)}
+                  onClick={handleToggleShowAmount}
                   variant="plain"
                   size="plain"
                 >
                   <IfElse
-                    isTrue={showFee}
-                    ifBlock={<EyeOpenedIcon />}
-                    elseBlock={<EyeClosedIcon />}
+                    isTrue={showAmount}
+                    ifBlock={
+                      <EyeOpenIcon className="rt-bg-[#cacaca] rt-px-[4px] rt-py-[4px] rt-rounded-[4px]" />
+                    }
+                    elseBlock={
+                      <EyeCloseIcon className="rt-bg-[#cacaca] rt-px-[3px] rt-py-[6.5px] rt-rounded-[4px]" />
+                    }
                   />
                 </Button>
-                <span className="rt-font-noto rt-text-15px rt-text-[#313131]">
-                  လွှဲခ/အမြတ်
-                </span>
               </div>
               <div className="rt-flex rt-items-center rt-font-inter">
-                <span className="rt-font-semibold rt-text-21px">
-                  {showFee ? formatNumber(total.fee) : "* * * * * *"}
+                <span className="rt-font-semibold rt-text-xl">
+                  {showAmount ? formatNumber(total.fee) : "* * * * * *"}
                 </span>
-                <span className="rt-text-15px rt-ml-1">Ks</span>
+                <span className="rt-text-md rt-ml-1">Ks</span>
               </div>
             </div>
           </div>

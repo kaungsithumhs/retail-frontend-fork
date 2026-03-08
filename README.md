@@ -765,16 +765,6 @@ The project uses a **custom Tailwind theme** with design tokens as CSS variables
 
 #### Custom Font Sizes
 
-```javascript
-// tailwind.config.js
-fontSize: {
-  '11px': ['var(--text-11px)', { lineHeight: 'var(--lh-11px)' }],
-  '12px': ['var(--text-12px)', { lineHeight: 'var(--lh-12px)' }],
-  '13px': ['var(--text-13px)', { lineHeight: 'var(--lh-13px)' }],
-  '14px': ['var(--text-14px)', { lineHeight: 'var(--lh-14px)' }],
-  // ... more sizes
-}
-```
 
 Usage:
 

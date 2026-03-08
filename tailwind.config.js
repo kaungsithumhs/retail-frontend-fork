@@ -22,62 +22,6 @@ module.exports = {
         pyi: ["var(--font-pyidaungsu)", "system-ui", "sans-serif"],
         inter: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
-      fontSize: {
-        xs: [
-          "var(--text-11px)",
-          {
-            lineHeight: "var(--lh-11px)",
-          },
-        ],
-        "11px": [
-          "var(--text-11px)",
-          {
-            lineHeight: "var(--lh-11px)",
-          },
-        ],
-        "12px": [
-          "var(--text-12px)",
-          {
-            lineHeight: "var(--lh-12px)",
-          },
-        ],
-        "13px": [
-          "var(--text-13px)",
-          {
-            lineHeight: "var(--lh-13px)",
-          },
-        ],
-        "14px": [
-          "var(--text-14px)",
-          {
-            lineHeight: "var(--lh-14px)",
-          },
-        ],
-        "15px": [
-          "var(--text-15px)",
-          {
-            lineHeight: "var(--lh-15px)",
-          },
-        ],
-        "16px": [
-          "var(--text-16px)",
-          {
-            lineHeight: "var(--lh-16px)",
-          },
-        ],
-        "17px": [
-          "var(--text-17px)",
-          {
-            lineHeight: "var(--lh-17px)",
-          },
-        ],
-        "21px": [
-          "var(--text-21px)",
-          {
-            lineHeight: "var(--lh-21px)",
-          },
-        ],
-      },
       keyframes: {
         "accordion-down": {
           from: {

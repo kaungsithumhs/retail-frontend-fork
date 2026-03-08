@@ -19,12 +19,12 @@ export function InfoCard({ append }: InfoCardProps) {
           height={106.54}
         />
       </div>
-      <p className="rt-text-17px rt-font-medium">
+      <p className="rt-text-lg rt-font-medium">
         ငွေလွှဲငွေထုတ်အတွက် လွှဲခထည့်ရန်
       </p>
       <Button
         variant="secondary"
-        className="rt-bg-[#fff9e5] rt-py-3 rt-px-[25px] rt-rounded-full rt-text-13px rt-font-medium"
+        className="rt-bg-[#fff9e5] rt-py-3 rt-px-[25px] rt-rounded-full rt-text-sm rt-font-medium"
         onClick={() =>
           append({ id: `temp-id-${Date.now()}`, fee: "0", from: "0", to: "0" })
         }

@@ -26,8 +26,6 @@ export function FormInputs({
   currentAmount,
   setCurrentAmount,
 }: FormInputsProps) {
-  console.log(currentAmount, "currentAmount in FormInputs");
-
   return (
     <div className="rt-px-5 rt-flex rt-flex-col rt-gap-7">
       <FormInput
@@ -35,6 +33,9 @@ export function FormInputs({
         control={control}
         label="ဖုန်းနံပါတ်"
         placeholder="ဖုန်းနံပါတ်ထည့်ပါ"
+        type="number"
+        isPhoneNumber
+        limit={false}
         startIcon={
           <PhoneIcon className="rt-w-[19px] rt-h-[19px] rt-text-[#929292]" />
         }
@@ -61,7 +62,10 @@ export function FormInputs({
         control={control}
         label="ရက်စွဲ"
         placeholder="ရက်စွဲထည့်ပါ"
-        startIcon={<CalendarIcon className="rt-h-4 rt-w-4 rt-mb-1" />}
+        startIcon={<CalendarIcon className="rt-h-4 rt-w-4" />}
+        disabledDays={{
+          after: new Date(),
+        }}
         floatingLabel={true}
         error={errors.date?.message}
       />
@@ -74,11 +78,12 @@ export function FormInputs({
           label="ငွေသွင်း/ထုတ်ပမာဏ"
           placeholder="ငွေသွင်း/ထုတ်ပမာဏထည့်ပါ"
           endIcon={
-            <span className="rt-font-inter rt-text-14px rt-text-[#929292]">
+            <span className="rt-font-inter rt-text-sm rt-text-[#929292]">
               Ks
             </span>
           }
           floatingLabel={false}
+          type="number"
           isCurrency
           error={errors.amount?.message}
           onChange={(value) => {
@@ -92,11 +97,12 @@ export function FormInputs({
           label="လွှဲခ/အမြတ်"
           placeholder="လွှဲခ/အမြတ်ထည့်ပါ"
           endIcon={
-            <span className="rt-font-inter rt-text-14px rt-text-[#929292]">
+            <span className="rt-font-inter rt-text-sm rt-text-[#929292]">
               Ks
             </span>
           }
           floatingLabel={false}
+          type="number"
           isCurrency
           error={errors.fee?.message}
         />

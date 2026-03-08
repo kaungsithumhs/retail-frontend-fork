@@ -63,23 +63,23 @@ export function RecordsList({
                   chevronClassName="rt-absolute rt-top-3 rt-right-4"
                 >
                   <div className="rt-w-full rt-px-[15px]">
-                    <span className="rt-font-inter rt-text-14px rt-font-bold rt-text-[#1e77ed] rt-mb-[18px]">
+                    <span className="rt-font-inter rt-text-sm rt-font-bold rt-text-[#1e77ed] rt-mb-[18px]">
                       {formatCalendarDate(record.date)}
                     </span>
                     <div className="rt-flex rt-items-center rt-justify-between rt-mt-3">
                       <div className="rt-flex rt-flex-col">
-                        <span className="rt-text-[#8f8f8f] rt-text-13px rt-font-pyi">
+                        <span className="rt-text-[#8f8f8f] rt-text-sm rt-font-pyi">
                           စုစုပေါင်း ငွေသွင်း/ထုတ်
                         </span>
-                        <span className="rt-font-pyi rt-font-bold rt-text-17px">
+                        <span className="rt-font-pyi rt-font-bold rt-text-lg">
                           {formatCurrency(record.totalAmount)} Ks
                         </span>
                       </div>
                       <div className="rt-flex rt-flex-col rt-items-end">
-                        <span className="rt-text-[#8f8f8f] rt-text-13px rt-font-pyi">
+                        <span className="rt-text-[#8f8f8f] rt-text-sm rt-font-pyi">
                           စုစုပေါင်း လွှဲခ/ အမြတ်
                         </span>
-                        <span className="rt-font-pyi rt-font-bold rt-text-17px rt-text-[#65b448] rt-z-50">
+                        <span className="rt-font-pyi rt-font-bold rt-text-lg rt-text-[#65b448] rt-z-50">
                           {formatCurrency(record.totalFee)} Ks
                         </span>
                       </div>
@@ -93,6 +93,7 @@ export function RecordsList({
                       className="last:rt-rounded-b-[10px]"
                       key={index}
                       record={recordItem}
+                      isLast={index === record.records.length - 1}
                     />
                   ))}
                 </AccordionContent>
