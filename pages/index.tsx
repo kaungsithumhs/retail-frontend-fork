@@ -2,6 +2,7 @@ import { ROUTES } from "@/common/constants";
 import Header from "@/components/Header";
 import { Envelope, QuickActions, RecentRecord } from "@/components/pages/home";
 
+// !This does not used by module fedration
 export default function Home() {
   return (
     <div className="rt-min-h-screen rt-bg-[#f5f5f5] rt-flex rt-flex-col">
