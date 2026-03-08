@@ -104,8 +104,18 @@ class ApiService {
 
   async get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T> {
     try {
-      const response = await this.client.get<ApiResponse<T>>(url, config);
-      return response.data.data;
+      const response = await this.client.get<ApiResponse<T> | T>(url, config);
+      const responseData = response.data;
+
+      if (
+        responseData &&
+        typeof responseData === "object" &&
+        "data" in responseData
+      ) {
+        return (responseData as ApiResponse<T>).data;
+      }
+
+      return responseData as T;
     } catch (error) {
       throw handleApiError(error);
     }
@@ -117,15 +127,28 @@ class ApiService {
     config?: AxiosRequestConfig,
   ): Promise<T> {
     try {
-      const response = await this.client.post(url, data, config);
+      const response = await this.client.post<ApiResponse<T> | T>(
+        url,
+        data,
+        config,
+      );
 
       // If responseType is blob, return the raw response
       if (config?.responseType === "blob") {
         return response as unknown as T;
       }
 
-      // Default JSON handling
-      return response.data.data as T;
+      const responseData = response.data;
+
+      if (
+        responseData &&
+        typeof responseData === "object" &&
+        "data" in responseData
+      ) {
+        return (responseData as ApiResponse<T>).data;
+      }
+
+      return responseData as T;
     } catch (error) {
       throw handleApiError(error);
     }

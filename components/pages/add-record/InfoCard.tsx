@@ -8,7 +8,7 @@ export function InfoCard() {
         <div className="rt-mt-[2px]">
           <InfoIcon className="rt-w-5 rt-h-5" />
         </div>
-        <p className="rt-font-bold rt-text-13px rt-leading-8">
+        <p className="rt-font-bold rt-text-sm rt-leading-8">
           မိမိကြိုက်နှစ်သက်ရာငွေလွှဲပုံစံဖြင့်မှတ်လိုပါက “အခြားအမျိုးအစား”
           ကိုနှိပ်ပါ။
         </p>

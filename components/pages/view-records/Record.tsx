@@ -39,11 +39,11 @@ export function Record({ record, className }: RecordProps) {
             {record.description}
           </span>
         )}
-        <span className="rt-font-inter rt-text-15px rt-leading-none">
+        <span className="rt-font-inter rt-text-md rt-leading-none">
           {formatNumber(record.amount!)} Ks
         </span>
       </div>
-      <div className="rt-font-inter rt-text-15px rt-flex rt-justify-between rt-items-center rt-leading-none">
+      <div className="rt-font-inter rt-text-md rt-flex rt-justify-between rt-items-center rt-leading-none">
         <span>{record.phoneNo}</span>
         <span className="rt-text-[#65b448]">
           {formatNumber(record.fee!)} Ks
@@ -86,11 +86,11 @@ export function ReportRecord({ record, className, isLast }: ReportRecordProps) {
               {record.Description}
             </span>
           )}
-          <span className="rt-font-inter rt-text-15px rt-leading-none">
+          <span className="rt-font-inter rt-text-md rt-leading-none">
             {formatNumber(record.Amount!)} Ks
           </span>
         </div>
-        <div className="rt-font-inter rt-text-15px rt-flex rt-justify-between rt-items-center rt-leading-none">
+        <div className="rt-font-inter rt-text-md rt-flex rt-justify-between rt-items-center rt-leading-none">
           <span>{record.PhoneNo}</span>
           <span className="rt-text-[#65b448]">
             {formatNumber(record.Fee!)} Ks

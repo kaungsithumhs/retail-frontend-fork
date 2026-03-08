@@ -122,12 +122,12 @@ export function FeeForm({
                   placeholder="ငွေသွင်း/ထုတ်ပမာဏထည့်ပါ"
                   type="number"
                   startIcon={
-                    <span className="rt-font-noto rt-text-14px rt-text-[#929292]">
+                    <span className="rt-font-noto rt-text-sm rt-text-[#929292]">
                       မှ
                     </span>
                   }
                   endIcon={
-                    <span className="rt-font-inter rt-text-14px rt-text-[#929292]">
+                    <span className="rt-font-inter rt-text-sm rt-text-[#929292]">
                       Ks
                     </span>
                   }
@@ -141,7 +141,7 @@ export function FeeForm({
                   label="လွှဲခ/အမြတ်"
                   placeholder="လွှဲခ/အမြတ်ထည့်ပါ"
                   endIcon={
-                    <span className="rt-font-inter rt-text-14px rt-text-[#929292]">
+                    <span className="rt-font-inter rt-text-sm rt-text-[#929292]">
                       Ks
                     </span>
                   }
@@ -175,12 +175,12 @@ export function FeeForm({
                   name={`fees.${index}.to`}
                   control={control}
                   startIcon={
-                    <span className="rt-font-noto rt-text-14px rt-text-[#929292]">
+                    <span className="rt-font-noto rt-text-sm rt-text-[#929292]">
                       သို့
                     </span>
                   }
                   endIcon={
-                    <span className="rt-font-inter rt-text-14px rt-text-[#929292]">
+                    <span className="rt-font-inter rt-text-sm rt-text-[#929292]">
                       Ks
                     </span>
                   }
@@ -201,7 +201,7 @@ export function FeeForm({
             className="rt-text-white rt-w-11/12"
             disabled={!isDirty}
           >
-            <span className="rt-font-noto rt-text-15px rt-mr-[7px] rt-font-medium">
+            <span className="rt-font-noto rt-text-md rt-mr-[7px] rt-font-medium">
               လွှဲခမှတ်မည်
             </span>
             <ArrowCircleRightIcon />
