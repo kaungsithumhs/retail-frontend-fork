@@ -56,15 +56,30 @@ export function RecordForm() {
   });
 
   useEffect(() => {
-    feeService.getByAmount(currentAmount).then(({ transferFee }) => {
-      setValue("fee", String(transferFee.fee));
-    });
+    if (!currentAmount) {
+      setValue("fee", "0");
+      return;
+    }
+
+    feeService
+      .getByAmount(currentAmount)
+      .then((response) => {
+        setValue("fee", String(response?.transferFee?.fee ?? 0));
+      })
+      .catch(() => {
+        setValue("fee", "0");
+      });
   }, [currentAmount, setValue]);
 
   useEffect(() => {
-    branchService.getAll().then(({ branches }) => {
-      setBranches(branches);
-    });
+    branchService
+      .getAll()
+      .then((response) => {
+        setBranches(response?.branches ?? []);
+      })
+      .catch(() => {
+        setBranches([]);
+      });
   }, []);
 
   const handleFormSubmit = async (data: CreateRecordInput) => {
@@ -144,7 +159,7 @@ export function RecordForm() {
           disabled={isLoading || isSubmitting}
           className="rt-text-white rt-w-11/12 "
         >
-          <span className="rt-font-noto rt-text-15px rt-mr-[7px]">
+          <span className="rt-font-noto rt-text-md rt-mr-[7px]">
             စာရင်းမှတ်တမ်း မှတ်မည်
           </span>
           <FloppyDisk />

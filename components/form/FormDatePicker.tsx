@@ -211,7 +211,7 @@ export function FormDatePicker<TFieldValues extends FieldValues>({
                   <label
                     className={cn(
                       "rt-absolute rt-left-3 rt-top-1/2 -rt-translate-y-1/2",
-                      "rt-pointer-events-none rt-font-pyi rt-text-14px rt-text-[#929292]",
+                      "rt-pointer-events-none rt-font-pyi rt-text-sm rt-text-[#929292]",
                       "rt-transition-all rt-duration-200 rt-ease-linear",
                       "rt-bg-white rt-px-1",
                       isFloating && "rt-top-0 rt-text-xs",
@@ -227,7 +227,7 @@ export function FormDatePicker<TFieldValues extends FieldValues>({
 
               {/* Error Message */}
               {showError && errorMessage && (
-                <p className="rt-text-11px rt-text-[#dd5144] rt-mt-1">
+                <p className="rt-text-[11px] rt-text-[#dd5144] rt-mt-1">
                   {errorMessage}
                 </p>
               )}
@@ -333,7 +333,7 @@ export function FormDatePicker<TFieldValues extends FieldValues>({
 
             {/* Error Message */}
             {showError && errorMessage && (
-              <p className="rt-text-11px rt-text-[#dd5144] rt-mt-1">
+              <p className="rt-text-[11px] rt-text-[#dd5144] rt-mt-1">
                 {errorMessage}
               </p>
             )}

@@ -42,7 +42,7 @@ export function RecentRecord() {
   return (
     <div className="rt-w-full rt-flex-1 rt-bg-white rt-py-[14px] rt-px-[19px] rt-rounded-t-[20px] rt-flex rt-flex-col">
       <div className="rt-flex rt-items rt-justify-between rt-font-pyi">
-        <p className="rt-font-bold rt-text-[#1e77ed] rt-text-17px">
+        <p className="rt-font-bold rt-text-[#1e77ed] rt-text-lg">
           နောက်ဆုံးစာရင်းမှတ်တမ်း
         </p>
         <Link
@@ -55,7 +55,7 @@ export function RecentRecord() {
       </div>
       <div className="rt-w-full rt-flex rt-items-center rt-justify-center rt-flex-1 rt-mt-[13px]">
         <IfElse
-          isTrue={records.length > 0}
+          isTrue={records?.length > 0}
           ifBlock={<RecordsList records={records} />}
           elseBlock={
             <div className="rt-flex rt-flex-col rt-gap-3 rt-items-center rt-justify-center">

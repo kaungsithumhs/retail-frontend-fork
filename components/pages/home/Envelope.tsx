@@ -74,7 +74,7 @@ export function Envelope() {
           <div className="rt-absolute rt-bottom-12 rt-left-7 rt-w-10/12 rt-gap-8 rt-flex rt-justify-between">
             <div className="rt-flex rt-flex-col rt-basis-1/2 rt-gap-[2px]">
               <div className="rt-flex rt-items-center rt-gap-[5px]">
-                <span className="rt-font-noto rt-text-15px rt-text-[#313131]">
+                <span className="rt-font-noto rt-text-md rt-text-[#313131]">
                   ငွေသွင်း/ထုတ်
                 </span>
                 <Button
@@ -90,15 +90,15 @@ export function Envelope() {
                 </Button>
               </div>
               <div className="rt-flex rt-items-center">
-                <span className="rt-font-inter rt-font-semibold rt-text-21px">
+                <span className="rt-font-inter rt-font-semibold rt-text-xl">
                   {showAmount ? formatNumber(total.total) : "* * * * * *"}
                 </span>
-                <span className="rt-text-15px rt-ml-1"> Ks</span>
+                <span className="rt-text-md rt-ml-1"> Ks</span>
               </div>
             </div>
             <div className="rt-flex rt-flex-col rt-basis-1/2 rt-gap-[2px]">
               <div className="rt-flex rt-items-center rt-gap-[5px]">
-                <span className="rt-font-noto rt-text-15px rt-text-[#313131]">
+                <span className="rt-font-noto rt-text-md rt-text-[#313131]">
                   လွှဲခ/အမြတ်
                 </span>
                 <Button
@@ -118,10 +118,10 @@ export function Envelope() {
                 </Button>
               </div>
               <div className="rt-flex rt-items-center rt-font-inter">
-                <span className="rt-font-semibold rt-text-21px">
+                <span className="rt-font-semibold rt-text-xl">
                   {showAmount ? formatNumber(total.fee) : "* * * * * *"}
                 </span>
-                <span className="rt-text-15px rt-ml-1">Ks</span>
+                <span className="rt-text-md rt-ml-1">Ks</span>
               </div>
             </div>
           </div>

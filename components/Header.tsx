@@ -72,7 +72,7 @@ const Header = ({
           }}
         >
           <LeftArrowIcon className="rt-w-9 rt-h-9" />
-          <p className="rt-text-17px">{navLabel}</p>
+          <p className="rt-text-lg">{navLabel}</p>
         </Link>
         <If
           isTrue={enableDownload}
@@ -84,7 +84,7 @@ const Header = ({
               onClick={onDownload}
             >
               <DownloadIcon />
-              <span className="rt-font-bold rt-text-12px rt-mt-[6px]">
+              <span className="rt-font-bold rt-text-xs rt-mt-[6px]">
                 ဒေါင်းလုပ်ဆွဲမည်
               </span>
             </Button>
@@ -100,7 +100,7 @@ const Header = ({
               onClick={() => setShowInstructionModal((state) => !state)}
             >
               <Info />
-              <span className="rt-font-bold rt-text-12px rt-mt-1">
+              <span className="rt-font-bold rt-text-xs rt-mt-1">
                 လွှဲခထည့်နည်း
               </span>
             </Button>
@@ -112,9 +112,9 @@ const Header = ({
         ifBlock={
           <Card className="rt-absolute rt-left-1/2 -rt-bottom-[218px] -rt-translate-x-1/2 -rt-translate-y-1/2 rt-w-11/12 rt-bg-[#1e77ed] rt-text-white rt-rounded-[5px] rt-shadow-none rt-border-0 rt-z-10 rt-p-0 rt-font-noto">
             <CardHeader className="rt-px-[15px] rt-py-[10px] rt-flex rt-flex-row rt-items-center rt-justify-between">
-              <CardTitle className="rt-text-16px rt-font-bold rt-flex rt-items-center rt-gap-[10px]">
+              <CardTitle className="rt-text-base rt-font-bold rt-flex rt-items-center rt-gap-[10px]">
                 <Info className="rt-w-5 rt-h-5" />
-                <span className="rt-font-bold rt-text-13px rt-mt-[6px] rt-mb-1">
+                <span className="rt-font-bold rt-text-sm rt-mt-[6px] rt-mb-1">
                   လွှဲခထည့်နည်း
                 </span>
               </CardTitle>
@@ -128,7 +128,7 @@ const Header = ({
               </Button>
             </CardHeader>
             <CardContent className="rt-px-[15px] rt-pb-[15px] rt-mt-[1px]">
-              <p className="rt-text-13px rt-font-normal">
+              <p className="rt-text-sm rt-font-normal">
                 ၁၀၀၀ မှ ၁၀၀၀၀ အတွင်းကို လွှဲခ ၅၀၀ ကောက်လိုပါက ၁၀၀၀ ကို “မှ”
                 တွင်ထည့်၍ ၁၀၀၀၀ ကို “သို့” တွင်ထည့်ပါ။ ၅၀၀ ကို “လွှဲခ”
                 တွင်ထည့်ပါ။

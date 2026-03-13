@@ -78,7 +78,7 @@ export function FormInputs({
           label="ငွေသွင်း/ထုတ်ပမာဏ"
           placeholder="ငွေသွင်း/ထုတ်ပမာဏထည့်ပါ"
           endIcon={
-            <span className="rt-font-inter rt-text-14px rt-text-[#929292]">
+            <span className="rt-font-inter rt-text-sm rt-text-[#929292]">
               Ks
             </span>
           }
@@ -97,7 +97,7 @@ export function FormInputs({
           label="လွှဲခ/အမြတ်"
           placeholder="လွှဲခ/အမြတ်ထည့်ပါ"
           endIcon={
-            <span className="rt-font-inter rt-text-14px rt-text-[#929292]">
+            <span className="rt-font-inter rt-text-sm rt-text-[#929292]">
               Ks
             </span>
           }
