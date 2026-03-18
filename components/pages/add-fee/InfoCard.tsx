@@ -24,7 +24,7 @@ export function InfoCard({ append }: InfoCardProps) {
       </p>
       <Button
         variant="secondary"
-        className="rt-bg-[#fff9e5] rt-py-3 rt-px-[25px] rt-rounded-full rt-text-sm rt-font-medium"
+        className="rt-bg-[#fff9e5] rt-text-black rt-py-3 rt-px-[25px] rt-rounded-full rt-text-sm rt-font-medium"
         onClick={() =>
           append({ id: `temp-id-${Date.now()}`, fee: "0", from: "0", to: "0" })
         }

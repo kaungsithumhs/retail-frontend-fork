@@ -5,27 +5,38 @@ import IfElse from "@/components/IfElse";
 import { RecordsList } from "@/components/pages/home";
 import { recordService } from "@/lib/api/records";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { RecordItem } from "@/common/types";
 
 export function RecentRecord() {
   const [records, setRecords] = useState<RecordItem[]>([]);
 
-  const fetchRecords = async () => {
-    try {
-      const data = await recordService.getRecents({
-        page: 1,
-        limit: 10,
-      });
-      setRecords(data.transferRecords);
-    } catch (error) {
-      console.error("Failed to fetch records:", error);
-    }
-  };
-
   useEffect(() => {
+    let ignore = false;
+
+    async function fetchRecords() {
+      try {
+        const data = await recordService.getRecents({
+          page: 1,
+          limit: 10,
+        });
+
+        if (!ignore) {
+          setRecords(data.transferRecords);
+        }
+      } catch (error) {
+        if (!ignore) {
+          console.error("Failed to fetch records:", error);
+        }
+      }
+    }
+
     fetchRecords();
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
   return (
