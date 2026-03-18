@@ -100,9 +100,7 @@ const Header = ({
               onClick={() => setShowInstructionModal((state) => !state)}
             >
               <Info />
-              <span className="rt-font-bold rt-text-xs rt-mt-1">
-                လွှဲခထည့်နည်း
-              </span>
+              <span className="rt-font-bold rt-text-xs">လွှဲခထည့်နည်း</span>
             </Button>
           }
         />
