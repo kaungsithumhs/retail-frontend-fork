@@ -60,6 +60,9 @@ export function DownloadDialog({
 
   const fromDate = useWatch({ control, name: "startDate" });
   const toDate = useWatch({ control, name: "endDate" });
+  const today = new Date();
+
+  today.setHours(0, 0, 0, 0);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange} modal>
@@ -104,6 +107,7 @@ export function DownloadDialog({
                     className="rt-text-[#1e77ed] hover:rt-text-[#1e77ed]"
                     btnClassName="hover:rt-text-[#1e77ed]"
                     showError={false}
+                    disabledDays={{ after: today }}
                   />
                   <span className="rt-px-6 rt-text-[#929292] rt-font-noto">
                     မှ
@@ -118,6 +122,7 @@ export function DownloadDialog({
                     className="rt-text-[#1e77ed] hover:rt-text-[#1e77ed]"
                     btnClassName="hover:rt-text-[#1e77ed]"
                     showError={false}
+                    disabledDays={{ after: today }}
                   />
                 </div>
               </div>

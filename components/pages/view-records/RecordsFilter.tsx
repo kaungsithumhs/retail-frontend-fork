@@ -29,13 +29,17 @@ export function RecordsFilter({
 
   const start = startDate ? new Date(startDate) : null;
   const end = endDate ? new Date(endDate) : null;
+  const today = new Date();
+
+  today.setHours(0, 0, 0, 0);
 
   // Dynamic windows
   const startMin = end ? subMonths(end, 3) : undefined;
-  const startMax = end || undefined;
+  const startMax = end && end < today ? end : today;
 
   const endMin = start || undefined;
-  const endMax = start ? addMonths(start, 3) : undefined;
+  const endWindowMax = start ? addMonths(start, 3) : undefined;
+  const endMax = endWindowMax && endWindowMax < today ? endWindowMax : today;
 
   return (
     <div className="rt-py-[15px] rt-px-5 rt-bg-white rt-flex rt-flex-col rt-gap-5">

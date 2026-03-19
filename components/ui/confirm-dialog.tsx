@@ -100,7 +100,7 @@ export function ConfirmDialog({
             <Button
               onClick={onPrimaryClick}
               disabled={primaryButtonDisabled}
-              className="rt-w-full rt-text-white"
+              className="rt-w-full rt-text-white rt-px-0" // rt-pb-4
             >
               <span className="rt-text-base rt-w-full rt-font-medium">
                 {primaryButtonText}
