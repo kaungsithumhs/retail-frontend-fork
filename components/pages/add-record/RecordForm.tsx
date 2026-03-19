@@ -186,7 +186,7 @@ export function RecordForm() {
         icon={<CheckCircleIcon />}
         title="စာရင်းမှတ်ပြီးပါပြီ။"
         primaryButtonText="အသစ်ထပ်ထည့်မည်"
-        secondaryButtonText="ပင်မစာမျက်မှာသို့သွားမည်"
+        secondaryButtonText="ပင်မစာမျက်နှာသို့သွားမည်"
         onPrimaryClick={handleAddNewSubmit}
         secondaryButtonHref={ROUTES.HOME}
         primaryButtonDisabled={isLoading}

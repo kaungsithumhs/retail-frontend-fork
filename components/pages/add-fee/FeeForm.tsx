@@ -241,7 +241,7 @@ export function FeeForm({
         onOpenChange={setShowSuccessDialog}
         icon={<CheckCircleIcon />}
         title="လွှဲခအသစ် မှတ်ပြီးပါပြီ။"
-        primaryButtonText="ပင်မစာမျက်မှာသို့သွားမည်"
+        primaryButtonText="ပင်မစာမျက်နှာသို့သွားမည်"
         onPrimaryClick={() => router.push("/retail")}
       />
     </div>
