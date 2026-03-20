@@ -24,6 +24,7 @@ export default function AddFee() {
     control,
     handleSubmit,
     formState: { errors, isDirty },
+    getValues,
     reset,
     trigger,
   } = useForm<{ fees: Fee[] }>({
@@ -68,7 +69,9 @@ export default function AddFee() {
         <FeeForm
           fields={fields}
           remove={remove}
+          initialFeeCount={fees.length}
           control={control}
+          getValues={getValues}
           trigger={trigger}
           errors={errors}
           handleSubmit={handleSubmit}

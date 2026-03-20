@@ -10,6 +10,7 @@ import {
   FieldErrors,
   UseFieldArrayRemove,
   useForm,
+  UseFormGetValues,
   UseFormReset,
 } from "react-hook-form";
 import ArrowCircleRightIcon from "@/components/icons/arrow-circle-right.svg";
@@ -26,7 +27,9 @@ import { ROUTES } from "@/common/constants";
 export interface FeeInputsProps {
   fields: Fee[];
   remove: UseFieldArrayRemove;
+  initialFeeCount: number;
   control: Control<{ fees: Fee[] }>;
+  getValues: UseFormGetValues<{ fees: Fee[] }>;
   trigger: ReturnType<typeof useForm<{ fees: Fee[] }>>["trigger"];
   handleSubmit: ReturnType<typeof useForm<{ fees: Fee[] }>>["handleSubmit"];
   isDirty: boolean;
@@ -39,7 +42,9 @@ export interface FeeInputsProps {
 export function FeeForm({
   fields,
   remove,
+  initialFeeCount,
   control,
+  getValues,
   handleSubmit,
   trigger,
   errors,
@@ -56,6 +61,15 @@ export function FeeForm({
   const [currentSelectedFeeIndex, setCurrentSelectedFeeIndex] = useState<
     number | null
   >(null);
+
+  const shouldDeleteWithoutConfirm = (index: number) => {
+    const fee = getValues(`fees.${index}`);
+    const isNewFee = index >= initialFeeCount;
+    const hasDefaultValues =
+      fee?.from === "0" && fee?.to === "0" && fee?.fee === "0";
+
+    return isNewFee && hasDefaultValues;
+  };
 
   const handleDeleteConfirm = () => {
     if (currentSelectedFeeIndex !== null) {
@@ -162,6 +176,11 @@ export function FeeForm({
                         : "rt-self-end rt-mb-[10px]",
                     )}
                     onClick={() => {
+                      if (shouldDeleteWithoutConfirm(index)) {
+                        remove(index);
+                        return;
+                      }
+
                       setCurrentSelectedFeeIndex(index);
                       setShowDeleteConfirmDialog(true);
                     }}
